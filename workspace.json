@@ -1,23 +1,12 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "my-app",
   "generators": {
     "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
+      "application": { "style": "css", "linter": "eslint", "babel": true },
+      "component": { "style": "css" },
+      "library": { "style": "css", "linter": "eslint" }
     }
   },
   "projects": {
@@ -67,13 +56,9 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "my-app:build"
-          },
+          "options": { "buildTarget": "my-app:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "my-app:build:production"
-            }
+            "production": { "buildTarget": "my-app:build:production" }
           }
         },
         "lint": {
@@ -105,17 +90,45 @@
             "devServerTarget": "my-app:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "my-app:serve:production"
-            }
+            "production": { "devServerTarget": "my-app:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/my-app-e2e/**/*.{js,ts}"]
-          }
+          "options": { "lintFilePatterns": ["apps/my-app-e2e/**/*.{js,ts}"] }
         }
+      }
+    },
+    "my-app-my-feature": {
+      "root": "libs/my-app/my-feature",
+      "sourceRoot": "libs/my-app/my-feature/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/my-app/my-feature/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/my-app/my-feature"],
+          "options": {
+            "jestConfig": "libs/my-app/my-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "libs/my-app/my-feature/e2e/cypress.json",
+            "tsConfig": "libs/my-app/my-feature/e2e/tsconfig.e2e.json",
+            "devServerTarget": "my-app:serve"
+          },
+          "configurations": {
+            "production": { "devServerTarget": "my-app:serve:production" }
+          }
+        }        
       }
     }
   }
